@@ -9,6 +9,22 @@
 		/*
 			var rm_a = /a*/.match(s);
 		*/
+### 2.4 字符串
+	
+ > JavaScript在被创建的时候，Unicode是16位的字符集，所以JavaScript中所有的字符都是16位的。
+
+### 2.5 语句
+	
+ > JavaScript中代码块不会创建一个新的作用域
+
+ * 下面的这些值被当做假(false)
+ 	- false
+ 	- null 
+ 	- undefined
+ 	- 空字符串''
+ 	- 数字0，(负数也被当做false)
+
+ 其他所有值都被当做真，包括true，字符串'false',以及所有的对象。
 
 ### 优美的句子
 
