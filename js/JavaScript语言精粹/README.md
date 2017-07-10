@@ -47,19 +47,35 @@
 
 ### 3.8 删除对象
 	
-  删除对象属性会让来自原型链中的属性浮现出来
+ * 删除对象属性会让来自原型链中的属性浮现出来
 
 	例：（以后补充）
 
 ### 4.7 给类型增加方法
 
-  > 清除字符串空格
+ * 清除字符串空格
 
-	```javascript
+```javascript
 	String.method('trim',function(){
 		return this.replace(/^\s+|\s+$/g,'');
 		});
-	```
+```
+
+### 4.8 递归 
+
+ * 递归（汉诺塔）
+
+```javascript
+	var hanoi = function(disc, src, aux, dst) {
+		if (disc > 0) {
+			hanoi(disc - 1, src, dst, aux); //除最大盘外从 src 移到 aux
+			document.writeln("move disc " + disc + " from " + src + " to " + dst); //最大盘从 src 移到 dst
+			hanoi(disc - 1, aux, src, dst); //除最大盘外从 aux 移到 dst
+		}
+	};
+	hanoi(3, '原地址', '辅助', '目标地址');
+```
+
 
 ### 优美的句子
 
