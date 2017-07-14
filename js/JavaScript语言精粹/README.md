@@ -25,7 +25,7 @@
  	- 数字0，(负数也被当做false)
  	- 数字NaN
 
- 其他所有值都被当做真，包括true，字符串'false'，以及所有的对象。
+ 其他所有值都被当做真，包括true，字符串'false'(除空字符串以外的所有字符串)，以及所有的对象。
 
 ### 2.6 表达式
  	
@@ -40,7 +40,7 @@
 |  `>=` `<=` `<` `>`  					| 不等于运算符 		|   5    |
 |  `===` `!==`  						| 等式运算符 		|   6    |
 |  `&&`  								| 逻辑与 			|   7    |
-|  ` | | `  							| 逻辑或 			|   8    |
+|  `||`		  							| 逻辑或 			|   8    |
 |  `? : `   							| 三元 				|   9    |
 
   `/` 可能会产生一个非整数的结果，即使两个运算数都是整数(计算机精度问题)
@@ -56,9 +56,9 @@
  * 清除字符串空格
 
 ```javascript
-	String.method('trim',function(){
-		return this.replace(/^\s+|\s+$/g,'');
-		});
+String.method('trim',function(){
+	return this.replace(/^\s+|\s+$/g,'');
+	});
 ```
 
 ### 4.8 递归 
@@ -66,16 +66,18 @@
  * 递归（汉诺塔）
 
 ```javascript
-	var hanoi = function(disc, src, aux, dst) {
-		if (disc > 0) {
-			hanoi(disc - 1, src, dst, aux); //除最大盘外从 src 移到 aux
-			document.writeln("move disc " + disc + " from " + src + " to " + dst); //最大盘从 src 移到 dst
-			hanoi(disc - 1, aux, src, dst); //除最大盘外从 aux 移到 dst
-		}
-	};
-	hanoi(3, '原地址', '辅助', '目标地址');
+var hanoi = function(disc, src, aux, dst) {
+	if (disc > 0) {
+		hanoi(disc - 1, src, dst, aux); //除最大盘外从 src 移到 aux
+		document.writeln("move disc " + disc + " from " + src + " to " + dst); //最大盘从 src 移到 dst
+		hanoi(disc - 1, aux, src, dst); //除最大盘外从 aux 移到 dst
+	}
+};
+hanoi(3, '原地址', '辅助', '目标地址');
 ```
-
+### 4.1.5 记忆(fibonacci)
+	
+	* [ 记忆(斐波那契数列) ]()
 
 ### 优美的句子
 
@@ -83,5 +85,5 @@
 * 如果为了理解她而不得不反复阅读，请别沮丧。你的付出将会有所回报
 * 编程这件事情，绝不应该在你一无所知的情况下开始
 * 模棱两可的情况会给你带来风险和麻烦事
-* 对于丑陋的东西，爱会闭目无视 ————威廉·莎士比亚《维罗那二绅士(The Two Gentlemen of Verona)》
-* 所有的过失在未犯以前，都已定下应处的惩罚 ————威廉·莎士比亚《一报还一报(Measure for Measure)》
+* 对于丑陋的东西，爱会闭目无视 		————威廉·莎士比亚《维罗那二绅士(The Two Gentlemen of Verona)》
+* 所有的过失在未犯以前，都已定下应处的惩罚 		————威廉·莎士比亚《一报还一报(Measure for Measure)》

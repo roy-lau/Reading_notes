@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>斐波那契数列</title>
+    <script>
+
+    // 斐波那契数列: 前面两项的和等于后一项的值
+
+    // 简单的递归(三目)（节省代码，耗内存。）
+    /*
+     *   函数被调用了453次，输出了11次。
+     *   而她自身有442次去计算可能已被计算过的值
+     *   有没有什么可以让她具备记忆功能？可以减少他的运算量？
+     */
+    var fibonacci_3 = function(n) {
+        return n < 2 ? n : fibonacci_3(n - 1) + fibonacci_3(n - 2)
+    }
+
+    for (var i = 0; i <= 10; i++) {
+        document.writeln('递归(三目) ： ' + i + ' ： ' + fibonacci_3(i) + '<br>')
+    }
+
+    // 记忆功能(闭包，数组)（代码量大，运行快！）
+    /*
+     *   定义一个数组memo保存我们的储存结果，储蓄结果可以隐藏在闭包中。
+     *   当函数调用时，首先看是否已经知道储存结果，如果已知道，就立即返回这个结果。
+     *   这个函数返回同样的结果，但她被调用了29次，11次输出结果，18去取得之前储存的结果
+     *   但是，这样的函数不易阅读 理解。我们是不是可以把它封装一下呢？
+     */
+    var fibonacci_memory = function() {
+        var memo = [0, 1];
+        var fib = function(n) {
+            var result = memo[n];
+            if (result.constructor !== Number) {
+                result = fib(n - 1) + fib(n - 2);
+                memo[n] = result;
+            }
+            return result;
+        }
+        return fib;
+    }();
+
+
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>
