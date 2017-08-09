@@ -2,22 +2,14 @@
 
 ### All
 
-<<<<<<< HEAD
 <img src="img/console.all.png" alt="img/console.all.png" />
-=======
-<img src="img/console.all.png" />
->>>>>>> 8dccb79a0844e93ce2c7f876e11cc00a3c281d3d
 
 
 ### type
 
 > console.log(), console.error(), console.warn(), console.info()
 
-<<<<<<< HEAD
 <img src="img/console.type.png" alt="img/console.type.png" />
-=======
-<img src="img/console.type.png" />
->>>>>>> 8dccb79a0844e93ce2c7f876e11cc00a3c281d3d
 
 ### 断言(assert)
 
@@ -29,11 +21,7 @@ console.assert(expression, message)
 > message: 输出语句，可以是任意类型
 
 
-<<<<<<< HEAD
 <img src="img/console.assert().png" alt="console.assert().png" />
-=======
-<img src="img/console.assert().png" />
->>>>>>> 8dccb79a0844e93ce2c7f876e11cc00a3c281d3d
 
 ### 计数(count)
 
@@ -44,11 +32,7 @@ console.count(label)
 > 参数：
 > label: 计算数量的标识符
 
-<<<<<<< HEAD
 <img src="img/console.count().png" alt="console.count().png" />
-=======
-<img src="img/console.count().png" />
->>>>>>> 8dccb79a0844e93ce2c7f876e11cc00a3c281d3d
 
 ### 目录(dir)
 
@@ -59,11 +43,7 @@ console.dir(object)
 > 参数：
 > object：被输出扎实的DOM对象
 
-<<<<<<< HEAD
 <img src="img/console.dir().png" alt="console.dir().png" />
-=======
-<img src="img/console.dir().png" />
->>>>>>> 8dccb79a0844e93ce2c7f876e11cc00a3c281d3d
 
 ### xml目录(dirxml)
 
@@ -73,7 +53,6 @@ console.dirxml(object)
 
 >该函数将打印输出XML元素及其子孙后代元素，且对HTML和XML元素调用 console.dirxml() 和 调用 console.log() 是等价的。
 
-<<<<<<< HEAD
 <img src="img/console.dirxml().png" alt="console.dirxml().png" />
 
 ### 表格(table)
@@ -111,9 +90,6 @@ const superhero = {
 console.table([superhero]);
 ```
 <img src="img/console.table(arr-or-obj)-Chrome.png" alt="console.table(arr-or-obj)-Chrome.png" />
-=======
-<img src="img/console.dirxml().png" />
->>>>>>> 8dccb79a0844e93ce2c7f876e11cc00a3c281d3d
 
 ### 开始时间：console.time([label])，结束时间：console.timeEnd([label])
 
@@ -166,8 +142,4 @@ console.trace(object)
 
 > 该函数将在控制台打印出从 console.trace() 被调用的位置开始的堆栈信息。
 
-<<<<<<< HEAD
 <img src="img/console.trace().png" alt="console.trace().png" />
-=======
-<img src="img/console.trace().png" />
->>>>>>> 8dccb79a0844e93ce2c7f876e11cc00a3c281d3d
