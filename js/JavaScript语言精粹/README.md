@@ -105,6 +105,27 @@ arr.length // 4
 arr.splice(2,1); // ['no','zuo','die']
 arr.length // 3
 ```
+#### 6.4 混淆的地方(object is Array)
+> 判断数组类型得出来的是对象
+```javascript
+var arr = [];
+typeof arr   // "object"
+```
+> 自定义方法判断数组
+```javascript
+/**
+ * @title 判断数组
+ * @param {object} 可以传入一个对象
+ * @return {true, flase} 返回是否是数组
+ */
+function is_Array(value){
+	return value &&
+		typeof value === 'object' &&
+		typeof vaule.length === 'number' &&
+		typeof vaule.splice === 'function' &&
+		!(vaule.propertyIsEnumerable('length'));
+}
+```
 
 #### 优美的句子
 
