@@ -97,6 +97,14 @@ arr[1000] = length  // 0
 arr[1000] = true    // true
 arr.length  // 1001
 ```
+#### 6.3 删除(delete)
+```javascript
+var arr = ['no','zuo','no','die'];
+delete arr[2]  	 // ['no','zuo',undefined,'die']
+arr.length // 4
+arr.splice(2,1); // ['no','zuo','die']
+arr.length // 3
+```
 
 #### 优美的句子
 
