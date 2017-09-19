@@ -127,6 +127,73 @@ function is_Array(value){
 }
 ```
 
+### 第七章 正则表达式
+> 大量的标点符号，混乱的思绪，以后回过头来再学
+
+### 第八章 方法
+
+* Array.concat(item……)
+
+> concat 方法返回一个新数组，它包含Array的浅复制(shallow copy) 并将一个或多个参数item附加在其后。如果参数item是一个数组，那么它的每个元素会被分别添加。此外，详情参见Array.push(item……)方法。
+
+```JavaScript
+var a = ["a","b","c"];
+var b = ["x","y","z"];
+var c = a.concat(b,true)  	// c 是 ["a","b","c","x","y","z",true]
+```
+* Array.join(separator)
+
+> join方法把一个Array构造成一个字符串。他将Array中的每个元素构造成一个字符串，并用一个separator(分离器)为分隔符把它们连接在一起。默认的separator(分离器)是 `,` 。为了实现无间隔连接，我们可以用空字符串作为separator.
+> 如果你想把大量的片段组装成一个字符串，把这些片段放到一个数组中并用 `join` 方法连接她们通常比用`+`元素运算符连接这些片段要快。
+
+```JavaScript
+var a = ["a","b","c"];
+a.push("b");
+var c = a.join("") 	// c 是 "abcd"
+```
+* Array.pop()
+
+> `pop`和`push`方法使数组`Array`像堆栈(stack)一样工作。`pop`方法移除`Array`中的最后一个元素并返回该元素。如果该`Array`是空的，他会返回`undefined`
+```JavaScript
+var a = ["a","b","c","d"];
+var c = a.pop() 	// a 是 ["a","b","c"] && c 是 "d"
+```
+> `pop` 可以像这样实现：
+```JavaScript 
+Array.method("pop",function(){
+	return this.splice(this.length - 1)[0];
+	})
+```
+
+* Array.push(item……)
+
+> `push` 方法将一个或多个参数`item`附件到一个数组的尾部。不像`concat`方法那样，它会修改该数组`Array`,如果参数`item`是一个数组，它会将参数数组作为单个元素整个添加到数组中。它返回这个数组`Array`的新长度值。
+```JavaScript
+var a = ["a","b","c"];
+var b = ["x","y","z"];
+var c = a.push(b,true);
+// a 是 ["a","b","c",["x","y","z"],true]
+// c 是 5;
+```
+> `psuh` 可以像这样实现：
+Array.method("push",function(){
+	this.splice.apply(
+			this,
+			[this.length,0].concat(Array.prototype.slice.apply(arguments))
+		);
+		return this.length;
+});
+
+* Array.reverse()
+`reverse`方法反转`Array`中的元素的顺序。它返回当前的Array；
+
+```JavaScript
+var a = ["a","b","c"];
+var b = a.reverse();
+// a和b都是 ["c","b","a"]
+
+* Array.shift()
+
 #### 优美的句子
 
 * “大师牛人，宁有种乎？”
@@ -135,3 +202,4 @@ function is_Array(value){
 * 模棱两可的情况会给你带来风险和麻烦事
 * 对于丑陋的东西，爱会闭目无视 			————威廉·莎士比亚《维罗那二绅士(The Two Gentlemen of Verona)》
 * 所有的过失在未犯以前，都已定下应处的惩罚 		————威廉·莎士比亚《一报还一报(Measure for Measure)》
+* 他虽疯，但却有他的一套理论 		————威廉·莎士比亚《丹麦王子、哈姆雷特的悲剧(The Tragedy of Hamlet,Prince of Denmark)》
