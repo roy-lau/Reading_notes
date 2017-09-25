@@ -505,7 +505,7 @@ document.writeln(match.PI.toExponential());
 </details>
 
 <details>
-	<summary><b>1、Number.toFixed(fractionDigits)</b> [点击查看]</summary>
+	<summary><b>2、Number.toFixed(fractionDigits)</b> [点击查看]</summary>
 > `toFixed`方法把这个`number`转换成为一个十进制数形成的字符串。可选参数`fractionDigits`控制其小数点后的数字位数。它的值必须在0和20之间。默认为0；
 
 ```JavaScript
@@ -524,7 +524,7 @@ document.writeln(Math.PI.toFixed());
 </details>
 
 <details>
-	<summary><b>1、Number.toPrecision(precision)</b> [点击查看]</summary>
+	<summary><b>3、Number.toPrecision(precision)</b> [点击查看]</summary>
 > `toPrecision`方法把这个`number`转换成为一个十进制数形成的字符串。可选参数`precision`控制其小数点后的数字位数。它的值必须在0和21之间:
 
 ```JavaScript
@@ -541,7 +541,7 @@ document.writeln(Math.PI.toPrecision());
 </details>
 
 <details>
-	<summary><b>1、Number.toString(radix)</b> [点击查看]</summary>
+	<summary><b>4、Number.toString(radix)</b> [点击查看]</summary>
 > `toString`方法把这个`number`转换成为一个字符串。可选参数`radix`控制基数。它的值必须在2和36之间。默认为radix是以10为基数的。`radix`参数是最常用的整数，但是可以用任意的数字。
 > 在最普通情况下，`number.toString()`可以更简单第写为`String(number)`：
 
@@ -779,7 +779,7 @@ for(i = 0;i < a.length;i +=1){
 </details>
 
 <details>
-	<summary><b>7、string.replace(searchValue,replaceValue)</b> [点击查看]</summary>
+	<summary><b>8、string.replace(searchValue,replaceValue)</b> [点击查看]</summary>
 
 > `replace`方法对`string`进行查找和替换的操作，并返回一个新的字符串。参数`searchValue`可以是一个字符串或一个正则表达式的对象。如果它是一个字符串，那么`searchValue`只会在第一次出现的地方被替换，所以下面的代码结果是`mother-in_law`:
 
@@ -796,12 +796,163 @@ var = oldAreaCode = /\((\d{3})\)/g;
 var p = '(555)666-1212'.replace(oldAreaCode, '$1-');
 // p 是 '555-555-1212'
 ```
+| 美元符号序列  							| 替换对象			 		  |
+| --------------------------------------| -------------------------- |
+|  $$  									| $					 		 |
+|  $&									| 整个匹配的文本	   			|
+|  $number								| 分组捕获的文本				|
+|  $‘  									| 匹配之前的文本				|
+|  $’ 									| 匹配之后的文本				|
 
+> 如果 `replaceValue` 是一个函数，此方法将对每个匹配依次调用它，并且该函数返回的字符串将被用作替换文本。传递给这个函数的第一个参数是整个被匹配的文本。第二个参数是分组`1`捕获的文本，下一个参数是分组`2`捕获的文本，以此类推：
+
+```JavaScrip
+String.methon('entityify',function(){
+	var character = {
+		'<' : '&lt;',
+		'>' : '&gt;',
+		'&' : '&amp;',
+		'"' : '&quot;'
+	};
+	// 返回 string.entityify方法，它返回调用替换方法的结果。
+	// 它的 replaceValue 函数返回在一个对象中查找一个字符串的结果。
+	// 这种对象的用法通常优于 switch 语句。
+	return function(){
+		return this.replace(/[<>&"]/g,function(c){
+			return character[c];
+		})
+	}
+}())
+```
+</details>
+
+<details>
+	<summary><b>9、string.seach(regexp)</b> [点击查看]</summary>
+
+> `seach`方法和`indexOf`方法类似，只是它接受一个正则表达是对象作为参数而不是一个字符串。如果找到匹配，它返回第一个匹配的首字符位置，如果没有找到匹配，则返回`-1`。此方法会忽略`g`标志，且没有`position`参数：
+
+```JavaScript
+var text = 'and in it he says "Any damn fool could';
+var pos = text.search(/["']/) 		// pos 是 18
+```
+</details>
+
+<details>
+	<summary><b>10、string.slice(start,end)</b> [点击查看]</summary>
+
+> `slice`方法复制`string`的一部分来构造一个新的字符串。如果`start`参数是负数，它将与`string.length`相加。`end`参数是可选的，并且它默认值是`string.length`。如果`end`参数是负数，那么它将与`string.length`相加。`end`参数是一个比最末一个字符的位置值还大的数。要想得到从位置`p`开始的`n`个字符，就有`string.slice(p,p+n)`。此外，请参见`string.subString`和`Array.slice`。
+
+```JavaScript
+var text = 'and in it he says "Any damn fool could';
+var a = text.slice(18);
+// a 是 '"Any damn fool could'
+var b = text.slice(0,3);
+// b 是 'and'
+var c = text.slice(-5);
+// c 是 'could'
+var d = text.slice(19,32);
+// d 是 'Any damn fool'
+```
+</details>
+
+<details>
+	<summary><b>11、string.splict(separator,limit)</b> [点击查看]</summary>
+
+> `splict`方法把这个`string`分割成片段来创建一个字符串数组。可选参数`limit`可以限制被分割的片段数量。`separator`参数可以是一个字符串或者一个正则表达式。
+> 如果`separator`是一个空字符串，将返回一个单字符串的数组：
+
+```JavaScript
+var digits = '0123456789';
+var a = digits.split('',5);
+// a 是 ['0','1','2','3','45678']
+```
+
+> 否则，此方法会在`string`中查找所有的`separator`出现的地方。分割符两边的每个单元文本会被复制到该数组中。此方法会忽略`g`标志：
+```JavaScript
+var ip = '192.168.1.0';
+var b = ip.split('.');
+// b 是 ['192','168','1','0']
+
+var c = 'a|b|c'.split('|');
+// c 是 ['','a','b','c','']
+
+var text = 'last, first , middle';
+var d = text.split(/\s*,\s*/);
+// d is [
+// 	'last'
+// 	'first'
+// 	'middle'
+//]
+```
+
+>  有一些特例须特别注意。来自分组捕获的文本将会被包含在被分割后的数组中；
+
+```JavaScript
+var e = text.split(/\s*(,)\s*/);
+// e is [
+// 'last',
+// ',',
+// 'first',
+// ',',
+// 'middle'
+//]
+```
+
+<details>	
+	<summary><b>当 `separator`是一个正则表达式时，有一些`JavaScript`的实现在输出数组中会禁止空字符串：</b>[点击查看]</summary>
+	
+_据测试，在主流浏览器中，只有IE系统的浏览器会在输出的数组结果中禁止空字符串。_
+</details>
+
+```JavaScript
+var f = '|a|b|c|'.split(/\|/);
+// 在一些系统中，f 是 ['','a','b','c',''],
+// 在另外一些系统中，f 是 ['a','b','c']。
+```
 
 </details>
 
+<details>
+	<summary><b>12、string.subString(start,end)</b> [点击查看]</summary>
+
+> `subString`的方法和`slice`方法一样，只是它不能处理负数参数。没有任何理由去使用`sbuString`方法。请用`slice`替代他。
+</details>
+
+<details>
+	<summary><b>13、string.toLocaleLowerCase()</b> [点击查看]</summary>
+
+> `toLocaleLowerCase`方法返回一个新的字符串，他使用本地化的规则把这个`string`中的所有字母转换为小写格式。这个方法主要是用在土耳其语上，因为在土耳其语中 `I` 转换为 `I`,而不是 'i'。
+</details>
+
+<details>
+	<summary><b>14、string.toLocaleUpperCase()</b> [点击查看]</summary>
+
+> `toLocaleUpperCase`方法返回一个新的字符串，他使用本地化的规则把这个`string`中的所有字母转换为大写格式。这个方法主要是用在土耳其语上，因为在土耳其语中 `i` 转换为 `I`,而不是 'I'。
+</details>
 
 
+<details>
+	<summary><b>14、string.toLowerCase()</b> [点击查看]</summary>
+
+> `toLowerCase`方法返回一个新的字符串，这个`string`中的所有字母都被转化为小写格式。
+</details>
+
+<details>
+	<summary><b>15、string.toUpperCase()</b> [点击查看]</summary>
+
+> `toUpperCase`方法返回一个新的字符串，这个`string`中的所有字母都被转化为大写格式。
+</details>
+
+<details>
+	<summary><b>16、string.fromCharCode(char……)</b> [点击查看]</summary>
+
+> `string.fromCharCode`函数从一串数字中返回一个字符串。
+
+```JavaScript
+var a = String.fromCharCode(67,97,116);
+// a 是 'Cat'
+```
+</details>
 
 
 #### 优美的句子
