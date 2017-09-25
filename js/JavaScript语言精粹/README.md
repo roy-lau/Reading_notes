@@ -510,10 +510,10 @@ document.writeln(match.PI.toExponential());
 
 ```JavaScript
 document.writeln(Math.PI.toFixed(0));
-document.writeln(match.PI.toFixed(2));
-document.writeln(match.PI.toFixed(7));
-document.writeln(match.PI.toFixed(16));
-document.writeln(match.PI.toFixed());
+document.writeln(Math.PI.toFixed(2));
+document.writeln(Math.PI.toFixed(7));
+document.writeln(Math.PI.toFixed(16));
+document.writeln(Math.PI.toFixed());
 // 结果
 3
 3.14
@@ -524,23 +524,285 @@ document.writeln(match.PI.toFixed());
 </details>
 
 <details>
-	<summary><b>1、Number.toString(fractionDigits)</b> [点击查看]</summary>
-> `toString`方法把这个`number`转换成为一个十进制数形成的字符串。可选参数`fractionDigits`控制其小数点后的数字位数。它的值必须在0和20之间。默认为0；
+	<summary><b>1、Number.toPrecision(precision)</b> [点击查看]</summary>
+> `toPrecision`方法把这个`number`转换成为一个十进制数形成的字符串。可选参数`precision`控制其小数点后的数字位数。它的值必须在0和21之间:
 
 ```JavaScript
-document.writeln(Math.PI.toString(0));
-document.writeln(match.PI.toString(2));
-document.writeln(match.PI.toString(7));
-document.writeln(match.PI.toString(16));
-document.writeln(match.PI.toString());
+document.writeln(Math.PI.toPrecision(2));
+document.writeln(Math.PI.toPrecision(7));
+document.writeln(Math.PI.toPrecision(16));
+document.writeln(Math.PI.toPrecision());
 // 结果
-3
-3.14
-3.1415927
-3.1415926535897930
-3
+3.1
+3.1415923
+3.141592653589793
+3.141592653589793
 ```
 </details>
+
+<details>
+	<summary><b>1、Number.toString(radix)</b> [点击查看]</summary>
+> `toString`方法把这个`number`转换成为一个字符串。可选参数`radix`控制基数。它的值必须在2和36之间。默认为radix是以10为基数的。`radix`参数是最常用的整数，但是可以用任意的数字。
+> 在最普通情况下，`number.toString()`可以更简单第写为`String(number)`：
+
+```JavaScript
+document.writeln(Math.PI.toString(2));
+document.writeln(Math.PI.toString(8));
+document.writeln(Math.PI.toString(16));
+document.writeln(Math.PI.toString());
+
+// 结果
+
+11.001001000011111101101010100010001000010110100011 
+3.1103755242102643
+3.243f6a8885a3
+3.141592653589793
+```
+</details>
+
+#### Object
+
+<details>
+	<summary><b>object.hasOwnProperty(name)</b> [点击查看]</summary>
+
+> 如果这个`object`包含了一个名为`name`的属性，那么`hasOwnProperty`方法返回`true`。原型链中的同名属性是不会被检查的。这个方法对`name`就是`hasOwnProperty`时不起作用，此时会返回`false`:
+
+```JavaScript
+var a = {mermber:true};
+var b = Object.beget(a);	// 来自第3章
+var t = a.hasOwnPropert('member');	 	// t 是 true
+var u = b.hasOwnProperty('member'); 	// u 是 false
+var v = b.member; 		// v 是 true
+```
+</details>
+
+#### RegExp
+
+<details>
+	<summary><b>1、regexp.exec(string)</b> [点击查看]</summary>
+
+> `exec`方法是使用正则表达式的最强大(和最慢)的方法。如果它成功地匹配`regexp`和字符串`string`,它会返回一个数组。数组中下标为`0`的元素包含正则表达式`regexp`匹配的字符串。下标为`1`的元素是分组`1`捕获的文本，下标为`2`的元素是分组`2`捕获的文本，以此类推。如果匹配失败，那么它会返回`null`。
+> 如果`regexp`带有一个`g`标志(全局标志)，事情标的有点更加复杂了。查找不是从这个字符串的起始位置开始，而是从`regexp.lastIndex`(它的初始化为0)位置开始。如果匹配成功，那么`regexp.lastIndex`将被设置为该匹配后第一个字符串的位置。不成功的匹配会重置`regexp.lastIndex`为0.
+> 这就允许通过在一个循环中调用`exec`去查询一个匹配模式在一个字符串中发生几次。有两件事需要注意。如果你提前退出了这个循环，再次进入这个循环前必须把`regexp.lastIndex`重置到`0`。`^`因子也仅匹配`regexp.lastIndex`为`0`的情况。
+
+
+```JavaScript
+// 把一个简单的HTML文本分解为标签和文本。
+// (entityify方法请参见string.replace)
+
+// 对每个标签和文本，都产生一个数组包含如下元素
+// [0] 整个匹配的标签和文本
+// [1] / (斜杠)，如果有的话
+// [2] 标签名
+// [3] 属性，如果有任何属性的话
+
+var text = '<html><body bgcolor=linen><p>' +
+	'This is <b>bold<\/b>!<\/p><\/p><\/body><\/html>';
+var tags = /[^<>]+|<(\/?)([A-Za-z]+)([^<>]*)>/g;
+var a,i;
+while((a = tages.exec(text))){
+	for(i = 0; i < a.length; i +=1){
+			document.writenln(('//[' +i+ ']' + a[i]).entityify());
+		}
+		document.writeln();
+	}
+// 结果
+// [0] <html>
+// [1] 
+// [3] 
+
+// [0] <body bgcoloe=linen>
+// [1]
+// [2] body
+// [3] bgcolor=linen
+
+// [0] <p>
+// [1]
+// [2] p
+// [3]
+
+// [0] This is
+// [1] undefined
+// [2] undefined
+// [3] undefined
+
+// [0] <b>
+// [1] 
+// [2] b
+// [3]
+
+// [0] bold
+// [1] undefined
+// [2] undefined
+// [3] undefined
+
+// [0] </b>
+// [1] /
+// [2] p
+// [3] 
+```
+</details>
+
+<details>
+	<summary><b>2、regexp.test(string)</b> [点击查看]</summary>
+
+> `test`方法是使用正则表达式的最简单(和最快)的方法。如果该`regexp`匹配`string`，它返回`true`;否则,它返回`false`。不要对这个方法使用`g`标识：
+
+
+```JavaScript
+var b = /&.+;/.test('frank &amp;beans');
+// b 是 true
+```
+> `test` 可以像这样实现：
+
+```JavaScript
+RegExp.method('test',function(string){
+	return this.exec(string) !== null;
+	})
+```
+</details>
+
+#### String
+
+<details>
+	<summary><b>1、string.charAt(pos)</b> [点击查看]</summary>
+
+> `chatAt`方法返回在`string`中`pos`位置处的字符串。如果`pos`小于`0`或大于等于字符串的长度`string.length`,它会返回空字符串。`JavaScript`没有字符串类型(character type)。这个方法返回的结果是一个字符串;
+
+```JavaScript
+var name = 'Curly';
+var initial = name.charAt(0); 	// initial 是 'c'
+```
+> `charAt`可以像这样实现:
+```JavaScript
+String.method('charAt',function(){
+		return this.slice(0,1);
+	})
+```
+
+</details>
+
+
+<details>
+	<summary><b>2、string.charCodeAt(pos)</b> [点击查看]</summary>
+
+> `charCodeAt`方法同`charAt`一样，只不过它返回的不是一个字符串，而是以整数形式表示的在`string`中的`pos`位置处的字符的字符码未。如果`pos`位置处的字符的字符码位。如果`pos`小于`0`或大于等于字符串的长度`string.length`,它返回`NaN`。
+
+```JavaScript
+var name = 'Curly';
+var initial = name.charCodeAt(0); 	// initial 是 '67'
+```
+</details>
+
+
+<details>
+	<summary><b>3、string.concat(string……)</b> [点击查看]</summary>
+
+> `concat`方法通过将其他的字符串连接在一起来构建一个新的字符串。它很少被使用，因为`+`运算符更为方便：
+
+```JavaScript
+var s = 'C'.concat('a','t'); // s 是 'Cat'
+```
+</details>
+
+
+<details>
+	<summary><b>4、string.indexOf(searchString,position)</b> [点击查看]</summary>
+
+> `indexOf`方法在`string`内查找另一个字符串`searchString`。如果它被找到，则返回第一个匹配字符的位置，否则返回`-1`。可选参数`position`可设置从`string`的某个指定的位置开始查找：
+
+```JavaScript
+var text = 'Mississippi';
+var p = text.indexOf('ss'); 	// p 是 2
+p = text.indexOf('ss',3); 	// p 是 5
+p = text.indexOf('ss',6); 	// p 是 -1
+```
+</details>
+
+
+<details>
+	<summary><b>5、string.lastIndexOf(searchString,position)</b> [点击查看]</summary>
+
+> `lastIndexOf`方法和`indexOf`方法类似，只不过它是从该字符串的末尾开始查找而不是从开头:
+
+```JavaScript
+var text = 'Mississippi';
+var p = text.lastIndexOf('ss'); 	// p 是 5
+p = text.lastIndexOf('ss',3); 	// p 是 2
+p = text.lastIndexOf('ss',6); 	// p 是 5
+```
+</details>
+
+<details>
+	<summary><b>6、string.localeCompare(that)</b> [点击查看]</summary>
+
+> `localeCompare`方法比较两个字符串。如何比较字符串的规则没有详细的说明。如果`string`比价字符串`that`小，那么结果为负数。如果它们是相等的，那么结果为`0`。这类似于`Array.sort`比较函数的约定：
+
+```JavaScript
+var m = ['AAA','A','aa','a','Aa','aaa'];
+m.sort(function(a,b){
+	return a.lovaleCompare(b);
+	})
+// m (在某些本地环境下) 是 ['a','A','aa','Aa','aaa','AAA']
+```
+</details>
+
+<details>
+	<summary><b>7、string.match(regexp)</b> [点击查看]</summary>
+
+> `match`方法匹配一个字符串和一个正则表达式。它依据`g`标识来决定如何进行匹配。如果没有`g`标识，那么调用`string.match(regexp)`的结果与调用`regexp.exec(string)`的结果相同。然而，如果`regexp`带有`g`标识，那么它返回一个包含除捕获分组以外的所有匹配的数组：
+
+```JavaScript
+var text = '<html><body bgcolor=linen><p>' +
+		'This is <b>bold<\/b>!<\/p><\/body><\/html>';
+var tags = /[^<>]+|<(\/?)([A-Za-z]+)([^<>]*)>/g;
+var a,i;
+a = text.match(tags);
+for(i = 0;i < a.length;i +=1){
+	document.writeln(('// [' +i+ ']' + a[i]).entityify());
+}
+
+// 结果是
+
+// [0] <html>
+// [1] <body bgcolor=linen>
+// [2] <p>
+// [3] This is
+// [4] <b>
+// [5] bold
+// [6] </b>
+// [7] !
+// [8] </p>
+// [9] </body>
+// [10] </html>
+```
+</details>
+
+<details>
+	<summary><b>7、string.replace(searchValue,replaceValue)</b> [点击查看]</summary>
+
+> `replace`方法对`string`进行查找和替换的操作，并返回一个新的字符串。参数`searchValue`可以是一个字符串或一个正则表达式的对象。如果它是一个字符串，那么`searchValue`只会在第一次出现的地方被替换，所以下面的代码结果是`mother-in_law`:
+
+```JavaScript
+var result = "mother_in_law".replace('_','-');
+```
+> 这或许令你失望。
+> 如果`searchValue`是一个正则表达式并且带有`g`标志，那么它将替换所有匹配之处。如果它没有带`g`标志，那么它将金体会第一个匹配之处。
+> `replaceValue`可以是一个字符串或者一个函数。如果`replaceValue`是一个字符串，字符`$`拥有特别的含义：
+
+```JavaScript
+// 捕获括号中的3个数字
+var = oldAreaCode = /\((\d{3})\)/g;
+var p = '(555)666-1212'.replace(oldAreaCode, '$1-');
+// p 是 '555-555-1212'
+```
+
+
+</details>
+
+
+
+
 
 #### 优美的句子
 
