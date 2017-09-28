@@ -964,3 +964,9 @@ var a = String.fromCharCode(67,97,116);
 * 对于丑陋的东西，爱会闭目无视 			————威廉·莎士比亚《维罗那二绅士(The Two Gentlemen of Verona)》
 * 所有的过失在未犯以前，都已定下应处的惩罚 		————威廉·莎士比亚《一报还一报(Measure for Measure)》
 * 他虽疯，但却有他的一套理论 		————威廉·莎士比亚《丹麦王子、哈姆雷特的悲剧(The Tragedy of Hamlet,Prince of Denmark)》
+* 好一串嘟嘟囔囔的头衔！ 		————威廉·莎士比亚《亨利六世上篇 (The First Part of Henry the Sixth)》
+* 那会在一言一行中证明其糟糕。 		————威廉·莎士比亚《泰尔亲王佩里克利斯 (Pericles, Prince of Type)》
+* 现在要请你告诉我，你究竟为了我哪一点坏处而开始爱上我来呢？ 		————威廉·莎士比亚《无事生非 (Much Ado About Notihing)》
+* 难道我的眼睛耳朵都有了毛病？ 		————威廉·莎士比亚《错误的喜剧 (The Comedy of Errors)》
+* 你这苦恼的化身，你在用表情向我们说话吗？ 		————威廉·莎士比亚《泰特斯·安德洛尼克斯 (The Tragedy of Titus Andronicus)》
+* 再会吧，这宝贵的片刻和短暂的实际限制了我在情义上的真挚表示，也不能容我们畅叙衷曲，这本来是亲友久违重逢所应有的机缘；愿上帝赐给我们美好的将来，好让我们开怀畅谈！在一次告别；勇敢作战吧，祝你胜利！		————威廉·莎士比亚《查理三世 (The Tragedy of Richard the Third)》
