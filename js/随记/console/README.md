@@ -143,3 +143,9 @@ console.trace(object)
 > 该函数将在控制台打印出从 console.trace() 被调用的位置开始的堆栈信息。
 
 <img src="img/console.trace().png" alt="console.trace().png" />
+
+> 标准浏览器在控制台输入下面的代码可以实现所有DOM可编辑
+
+```javaScript
+document.body.contentEditable=true
+```
