@@ -91,6 +91,7 @@ __有时候，JavaScript需要你知道外在的真实世界如何运作。__ �
 当你点击超连接或在浏览器输入一段URL，浏览器都会向某个网站服务器请求网页。直到浏览器呈现网页的前一刻，JavaScript代码才加入动作行列，负责与浏览器合作响应 __用户的交互__,并于需要时调整网页画面。浏览器里运行JavaScript代码的部分称为 __JavaScript解释器。__
 
 
+__4 浏览器篇__
 
-
+https://blog.csdn.net/pujiaolin/article/details/73557219
 
