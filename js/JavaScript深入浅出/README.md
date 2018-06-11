@@ -96,6 +96,55 @@ __有时候，JavaScript需要你知道外在的真实世界如何运作。__ �
 我们遇到无法储存用户名的问题，有个专有名词： __持久性(persistrnce)__,或者该说是“缺乏持久性”。有时候，我们真的需要不会消失的数据。但JavaScript变量的生命却如昙花一现，于浏览器关闭或网页更新的弹指间消失无踪。浏览器的 cookie提供了持久地储存数据，让数据比脚本生命周期更长的方式。
 
 
-cookie 是浏览器储存在用户计算机里的一块数据。 cookie 很类似于 JavaScript 变量， 只不过在你关闭浏览器的电源、整修房屋后， cookie 依然呆在你的计算机里。所以， cookie成了存储 iRock用户名称的便利选择。
+__cookie__ 是浏览器储存在用户计算机里的一块数据。 cookie 很类似于 JavaScript 变量， 只不过在你关闭浏览器的电源、整修房屋后， cookie 依然呆在你的计算机里。所以, cookie 成了存储 iRock用户名称的便利选择。
 
+```js
 
+/**
+ * 写入 cookie
+ * @param  {String} name  cookie名/键
+ * @param  {Object} value 值
+ * @param  {Date} 	days  过期时间（天）
+ * @return {type]}       description
+ */
+function writeCooke(name, value, days){
+	var expires = "";
+
+	if(days){
+		var date = new Date();
+		// 计算过期时间，需要把天数换算为毫秒数，再把毫秒数加到当前时间上
+		date.setTime(date.getTtime() + (days * 24 * 60 * 60 * 1000));
+		expires = '' ;
+		expires = '' + date.toGMTString();
+	}
+
+	document.cookie = name + "=" + value + expires + '';
+}
+
+/**
+ * 读取 cookie
+ * @param  {String} name cookie名/键
+ * @return {Object}      cookie值
+ */
+function readCookie(name){
+	var searchName = name + "=";
+	var cookies = document.cookie.split(';');
+	for(var i = 0; i < cookies.length; i++){
+		var c = cookies[i];
+		while (c.charAt(0) == ' ')
+			c = c.substring(1, c.length);
+		if (c.indexOf(searchName) == 0)
+		return c.substring(searchName.length, c.length);
+	}
+	return null;
+}
+
+/**
+ * 清除 cookie
+ * @param  {String} name cookie名/键
+ * @return {[type]}      [description]
+ */
+function eraseCookie(name){
+	writeCookie(name, "", -1);
+}
+```
