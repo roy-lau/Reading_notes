@@ -296,7 +296,7 @@ javaScript有种非常强大的内置工具——**正则表达式(regular expre
 
 不是元字符的任何文字将于正则表达式里“照样匹配”。也就是说，`/howard/`可以找出任何包括`"howard"`的字符串。另外，还有一种正则表达式结构，称为**限定符(quantifier)**,可进一步把模式调整得更好。限定符前为子模式(sub-patterm),限定符即应用在子模式，并控制子模式出现在模式里的次数。
 
-`*`: 限定符前的自魔术必须出现0或多次。子模式为可选的，可出现任意次数。
+`*`: 限定符前的子模式必须出现0或多次。子模式为可选的，可出现任意次数。
 
 `{n}`: 限定符前的子模式必须出现恰好n次。控制自模式可以出现的次数。
 
@@ -317,3 +317,67 @@ javaScript有种非常强大的内置工具——**正则表达式(regular expre
 
 `RegExp`对象的`test()`方法用于对字符串应用正则表达式模式的检测。
 
+
+### 8、 驾驭网页
+
+
+ID 是访问网页元素的方式，同一个网页上的各个元素ID应该有独特性。在指定网页上，各个id应该独一无二。
+
+> 访问html元素
+
+```js
+// 通过id访问html元素
+document.getElementById("idName")
+
+// 通过标签名访问html元素
+document.getElemtntsByTagName("div")
+
+// innerHTML特性对所有存储在元素里的内容提供了访问管道，
+// innerHTML取得元素的所有内容，包括HTML标签
+document.getElementById("idName").innerHTML
+// innerHTML也可以用于设置标签内容
+document.getElementById("idName").innerHTML  = "this is a piece of content";
+```
+
+> Document Object Model(DOM)
+
+DOM 提供对脚本友善(script-friendly)的网页结构与内容的视图，如果需要用`javaScript`动态改变网页，这点非常重要。通过加装 DOM 的透镜，网页看来就像形成树状的层层元素。树上的每片叶子是**节点(node)**, 直接关联到网页上的各个元素。当树上的某节点出现在另一个节点下时，则被称为**节点(node)**。
+
+> DOM节点的集合
+
+DOM 树的每个节点均根据**类型(type)**分类。主要的节点类型对应至网页的结构，主要以**元素节点(element node)**和**文本节点(text node)**构成
+
+**document**: 位于 DOM 树最顶端的节点，代表文档本身，且出现在html元素的上一层。
+
+**element**: 对应HTML标签的HTML元素。
+
+**text**: 元素的文本内容，存储在元素下的子节点里。
+
+**attribute**: 元素的属性，可透过元素节点访问，但不会直接出现在 DOM 树里。
+
+> 攀爬DOM树
+
+大部分与DOM的交互均从`document`对象开始,他是文档节点树的最上层节点。文档对象提供各种好用的方法(method),例如`getElementById()`、`getElementsByTagName()`,以及许多特性。`document`对象的许多特性可有树上的每个节点取得,有些特性甚至能帮我们导向其他节点。也就是说，节点特性能用于导览节点树。
+
+**nodeValue**: 存储于节点的值，只限文本于属性节点使用(不含元素)
+
+**nodeType**: 节点类型，例如它是`document`或`text`等等，但以代号表示。
+
+**childNodes**: 包含节点下所有子节点的数组，以出现在HTML代码中的顺序而排列。
+
+**firstChlid**: 节点下的第一个节点。
+
+**lastChlid**: 节点下的最后一个节点。
+
+
+> 改变节点文本
+
+**createTextNode()**: 从文本字符串创建文本节点。
+
+**appendChild()**: 以最后一个子节点的形式加入新节点，传入将被新增的子节点。
+
+**removeChild()**: 移除目标节点下的一个子节点，传入将被移除的子节点。
+
+`className` 特性提供对元素样式类的访问
+
+节点的`style`特性提供对单一样式特性的访问
