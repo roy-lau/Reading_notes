@@ -71,3 +71,76 @@
 <link rel="alternate stylesheet" type="text/css" href="bigtext.css" media="screen" title="Big Text" />
 <link rel="alternate stylesheet" type="text/css" href="print-bigtext.css" media="print" title="Big Text" />
 ```
+
+**style元素:**
+
+```html
+<style type="text/css"></style>
+```
+
+`style` 一定要使用 `type` 属性;对于 `CSS` 文档,正确的 `type` 属值是 `"text/css"`,这与 `link` 元素类似。
+`style` 元素始终要以 `<style type="text/css"></style>`开头，如上例所示。其后可以有一个或多个样式，最后以一个结束 `</style>`标记结尾。还可以为 `style` 元素指定一个 `media` 属性，其可取值与之前的 `media` 属性值相同。
+
+开始和结束 style 标记之间的样式称为文档样式表(`document style sheet`),或嵌套样式表(`embedded style sheet`), 因为这个样式表嵌套在文档中。其中可能包含应用到文档的多个样式，还可以使用`@import` 指令包含多个外部样式表链接。
+
+**@import指令**
+
+常见用例：
+
+```html
+<style type="text/css">
+	@import url(style.css); /* @import comes first */
+	@import url(sheet2.css);
+	@import url(blueworld.css);
+	@import url(zany.css);
+	h1 {color: gray;}
+</style>
+```
+
+根据不同的媒体应用不同的样式：
+
+```html
+<style type="text/css">
+	@import url(sheet2.css) all;
+	@import url(blueworld.css) screen;
+	@import url(zany.css) projection print;
+</style>
+```
+
+`@import` 加载外部样式表:
+
+```html
+@import url(http://example.org/library/layout.css);
+```
+
+_注意：_ `@import` 指令出现在样式表的开头，`CSS` 要求 `@import` 指令出现在样式表中的其他规则之前。如果一个 `@import` 出现在其他规则（如 `body {color: red;}`）之后，**兼容用户代理会将其忽略**。
+
+_警告：_ `Windows` 平台的 `Internet explorer`不会忽略任何 `@import`指令，甚至出现在其他规则之后的 `@import`也不会忽略。
+
+**`CSS` 注释**
+
+```css
+/* 单行注释 */
+
+/* 多行
+	注释 */
+```
+
+**内联样式**
+
+style属性语法：
+
+```html
+<p style="color: gray;">这是一段内联样式</p>
+```
+
+_此处 “inline” 不能理解为“行内”，而应当是“内联”，有“内部自带”的意思。_
+
+_注意：_ 一个内联 style 属性只能放一个声明块，而不能放整个样式表。因此，不能在 style 属性中放 @import，也不能包含完整的规则。 style 属性的值中只能是规则中出现的大括号之间的部分。**style属性通常不推荐使用，XHTML1.1已将将其标注为不建议使用，XML也不太可能使用这个属性。因为他会抵消一些CSS的优点。**
+
+**小结**
+
+利用 CSS，可能会改变用户代理表现元素的方式。可以使用 display 属性采用基本方法来显示，也可以将样式表与文档关联，以另一种不同的方式表现。用户不会知道这是通过外部样式表还是嵌套样式表完成的（甚至有可能是利用一个内联样式做到的）。外部样式表真正的意义在于，她允许创作人员将网站的所有表现信息放在一个位置，将所有文档指向这个位置。这不仅使用网络的更新和维护相当容易，还有助于节省带宽，因为文档中去除了所有表现信息。
+为了充分利用 CSS 的强大功能，创作人员需要了解如何将一组样式与文档中的元素相关联。要全面地理解 CSS 如何做到这些，创作人员则需要深入地掌握 CSS 以何种方式选择文档中要应用样式的部分。
+
+
