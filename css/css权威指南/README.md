@@ -15,9 +15,9 @@
 
 - 行内元素 ： 如 `a strong em`,行内元素在一个文本行内生成元素框，而不会打断这行文本。
 
-|# 	| display 	|
-|----|:-----------------------------:|
-| 值 | `none`、 `inline`、 `block`、 `inline-block`、 `list-item`、 `run-in`、 `table`、 `inline-table`、 `table-row-group`、 `table-header-group`、 `table-footer-group`、 `table-row`、 `table-column-group`、 `table-column`、 `table-cell`、 `table-caption`、 `inherit` |
+|##### 	| display 	|
+|-------|:-----------------------------:|
+| 值 		| `none`、 `inline`、 `block`、 `inline-block`、 `list-item`、 `run-in`、 `table`、 `inline-table`、 `table-row-group`、 `table-header-group`、 `table-footer-group`、 `table-row`、 `table-column-group`、 `table-column`、 `table-cell`、 `table-caption`、 `inherit` |
 | 初始值 | inline 	|
 | 应用于 | 所有元素 	|
 | 继承性 | 无		|
@@ -184,10 +184,103 @@ p { font: medium Heletica;}
 
 <hr />
 
-_注意:_ CSS 关键字往往由空格分隔，只用一种情况例外，在 CSS 的 `font` 属性中，只有一整情况可以使用斜线 **/** 来分隔两个关键字。如下例：
+__注意 :__  CSS 关键字往往由空格分隔，只用一种情况例外，在 CSS 的 `font` 属性中，只有一整情况可以使用斜线 **/** 来分隔两个关键字。如下例：
 
 ```css
 h2 {font: large/150% sans-serif;}
 ```
 斜线分隔了用来设置元素的字体大小和行高的两个关键字，只用在这里才允许 `font` 声明中出现斜线。 `font` 允许的所有其他关键字都用空格分隔。
 <hr />
+
+#### 分组:
+
+- 选择器分组
+
+将多个元素设置相同的css样式，最直接的方式可能是这样：
+
+```css
+h1 {color: purple;}
+h2 {color: purple;}
+h3 {color: purple;}
+h4 {color: purple;}
+h5 {color: purple;}
+h6 {color: purple;}
+```
+
+但是，使用 **分组选择器** 就简单方便多了，如下：
+
+```css
+h1, h2, h3, h4, h5, h6 {color: purple;}
+```
+
+- 通配选择器
+
+css2 引入了一种新的选择器，称为 **通配选择器(uninersal selector)** ,显示为一个星号。这个选择器可以与任何元素匹配，就像一个通配符。例如，让一个文档中的每一个元素都为红色，可以写为如下规则：
+
+```css
+* {color: red;}
+```
+
+- 声明分组
+
+假如您需要为一个元素设置浅绿色背景，18像素的 `Helvetica` 字体，文本颜色为紫色。那您就可以使用 **声明分组** 来更方便的的书写样式了：
+
+```CSS
+p {
+	font: 18px Helvetica;
+	color: purple;
+	background: aqua;
+}
+```
+
+__注意 :__ 声明块的最后一定要使用分号结尾，如果缺少分号就会出现各种意想不到的错误。
+
+
+- 结合 选择器和声明的分组
+
+```CSS
+h1, h2, h3, h4, h5, h6 {
+	color: purple;
+	background: white;
+	padding: 0.5em;
+	border: 1px solid black;
+	font-family: Charcoal, sans-serif;
+	}
+```
+
+#### 类选择器和ID选择器：
+
+> 除了指示文档元素的选择器外，还有另外两种类型的选择器： 类选择器(class selector) 和 ID 选择器(ID selector)，他们允许以一种独立于文档元素的方式来指定元素样式。
+
+- 类选择器：
+
+要应用样式而不考虑具体涉及的元素，最常用的方法就是使用类选择器。不过，在使用类选择器之前，需要秀给具体的文档标记，以便类选择器正常工作，驶入以下 class 属性；
+
+```HTML
+<p class="waring">这是一段警告文本</p>
+<p>这是一段<span class="waring">警告</span>文本</p>
+```
+
+对于HTML文档，可以使用一种很简洁的记法，即类名前有一个点号( ```.``` )。
+
+```CSS
+.waring {font-weight: bold; color: red;}
+```
+
+- ID 选择器：
+
+ID 选择器与 类选择器类似，ID选择器前面有一个 `#` 号 —— 也成为棋盘符。
+
+```HTML
+<p id="text-bold">这是一段加粗的文本</p>
+```
+
+```CSS
+#text-blod { font-weight: bold; }
+```
+
+- 类选择器还是ID选择器 ?
+	1. ID选择器具有唯一性，使用过一次，别的地方就不能使用了（实际上浏览器并没有检查ID选择器的唯一性）
+	2. 不同于类选择器 ID选择器不能结合使用。因为ID选择器不允许有空格分隔的次词列表。
+	3. class 名与 ID名之间的另一个区别是，如果你想确定一个给定元素应用那些样式，ID能包含更多含义。
+	4. 类和ID选择器都是可能区分大小写的，这取决于文档语言。HTML和XHTML将类和ID定义为区分大小写，所以ID值的大小写必须和文档中的值相对应。( _一些老旧的浏览器可能会不区分类和ID选择器的大小写_ )
