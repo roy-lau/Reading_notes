@@ -1,11 +1,11 @@
 
-## CSS 权威指南
+# CSS 权威指南
 
 > 层叠样式表(Cascading Style Sheets, CSS) 的功能非常强大，可以影响一个或一组文档的表现。显然，如果不存在某种文档，CSS基本毫无用处，因为这样一来他将没有要表现的内容。当然，“文档”的定义相当宽泛。
 
-###  1、 CSS和文档
+##  1、 CSS和文档
 
-#### 元素
+### 元素
 
 - 替换元素： 如 `img`
 
@@ -22,7 +22,7 @@
 | 应用于 		| 所有元素 		  |
 | 继承性 		| 无					 |
 
-#### link标签
+### link标签
 
 ```html
 <link rel="stylesheet" type="text/css" href="sheet1.css" media="all" />
@@ -72,7 +72,7 @@
 <link rel="alternate stylesheet" type="text/css" href="print-bigtext.css" media="print" title="Big Text" />
 ```
 
-#### style元素
+### style元素
 
 ```html
 <style type="text/css"></style>
@@ -83,7 +83,7 @@
 
 开始和结束 style 标记之间的样式称为文档样式表(`document style sheet`),或嵌套样式表(`embedded style sheet`), 因为这个样式表嵌套在文档中。其中可能包含应用到文档的多个样式，还可以使用`@import` 指令包含多个外部样式表链接。
 
-#### @import指令
+### @import指令
 
 常见用例：
 
@@ -117,7 +117,7 @@ _注意：_ `@import` 指令出现在样式表的开头，`CSS` 要求 `@import`
 
 _警告：_ `Windows` 平台的 `Internet explorer`不会忽略任何 `@import`指令，甚至出现在其他规则之后的 `@import`也不会忽略。
 
-#### `CSS` 注释
+### `CSS` 注释
 
 ```css
 /* 单行注释 */
@@ -126,7 +126,7 @@ _警告：_ `Windows` 平台的 `Internet explorer`不会忽略任何 `@import`�
 	注释 */
 ```
 
-#### 内联样式
+### 内联样式
 
 `style` 属性语法：
 
@@ -138,22 +138,22 @@ _此处 “inline” 不能理解为“行内”，而应当是“内联”，�
 
 _注意：_ 一个内联 `style` 属性只能放一个声明块，而不能放整个样式表。因此，不能在 `style` 属性中放 `@import`，也不能包含完整的规则。 `style` 属性的值中只能是规则中出现的大括号之间的部分。**style属性通常不推荐使用，XHTML1.1已将将其标注为不建议使用，XML也不太可能使用这个属性。因为他会抵消一些CSS的优点。**
 
-#### 小结
+### 小结
 
 利用 CSS，可能会改变用户代理表现元素的方式。可以使用 `display` 属性采用基本方法来显示，也可以将样式表与文档关联，以另一种不同的方式表现。用户不会知道这是通过外部样式表还是嵌套样式表完成的（甚至有可能是利用一个内联样式做到的）。外部样式表真正的意义在于，她允许创作人员将网站的所有表现信息放在一个位置，将所有文档指向这个位置。这不仅使用网络的更新和维护相当容易，还有助于节省带宽，因为文档中去除了所有表现信息。
 为了充分利用 CSS 的强大功能，创作人员需要了解如何将一组样式与文档中的元素相关联。要全面地理解 CSS 如何做到这些，创作人员则需要深入地掌握 CSS 以何种方式选择文档中要应用样式的部分。
 
 
-### 2、选择器
+## 2、选择器
 
-#### 基本规则
+### 基本规则
 
 将所有`h2`标题变为银色
 ```css
 h2 {color: silver}
 ```
 
-#### 规则结构
+### 规则结构
 
 每个 css 规则都有两个基本部分： **选择器(selector)** 和 **声明块(declaration block)** 。声明块又一个或多个 **声明(declaration)** 组成，每个声明则是一个属性——值对(proerty-value)。每个样式表由一系列规则组成。下图显示了规则的各个部分。
 
@@ -161,7 +161,7 @@ h2 {color: silver}
 
 如上图所示，选择器定义了将影响文档中的那些部分。上图中选择了 `h1` 元素。如果选择器是 `p` ，怎会选择所有 `p` (段落)元素。
 
-#### 元素选择器
+### 元素选择器
 
 将 html 标签元素做为 css 的选择器来使用，称为 **元素选择器**
 
@@ -171,7 +171,7 @@ h1 {color: gray:}
 h2 {color: silver;}
 ```
 
-#### 声明和关键字
+### 声明和关键字
 
 如果一个属性的值可以取多个关键字，在这种情况下，关键字通常由空格分隔。并不是所有的属性都能接受多个关键字，不过确实有许多属性是这样的，例如 `font` 属性。假设腰围段落文本定义中等大小的 `Heletica` 字体，写法如下：
 
@@ -192,7 +192,7 @@ h2 {font: large/150% sans-serif;}
 斜线分隔了用来设置元素的字体大小和行高的两个关键字，只用在这里才允许 `font` 声明中出现斜线。 `font` 允许的所有其他关键字都用空格分隔。
 <hr />
 
-#### 分组
+### 分组
 
 - 选择器分组
 
@@ -248,7 +248,7 @@ h1, h2, h3, h4, h5, h6 {
 	}
 ```
 
-#### 类选择器和ID选择器
+### 类选择器和ID选择器
 
 > 除了指示文档元素的选择器外，还有另外两种类型的选择器： 类选择器(class selector) 和 ID 选择器(ID selector)，他们允许以一种独立于文档元素的方式来指定元素样式。
 
@@ -285,7 +285,7 @@ ID 选择器与 类选择器类似，ID选择器前面有一个 `#` 号 —— �
 	3. class 名与 ID名之间的另一个区别是，如果你想确定一个给定元素应用那些样式，ID能包含更多含义。
 	4. 类和ID选择器都是可能区分大小写的，这取决于文档语言。HTML和XHTML将类和ID定义为区分大小写，所以ID值的大小写必须和文档中的值相对应。( _一些老旧的浏览器可能会不区分类和ID选择器的大小写_ )
 
-#### 属性选择器
+### 属性选择器
 
 > 对于类选择器和ID选择器，实际上只能选择属性的值。CSS2 引入了属性选择器( `attribute selector` ), 可以根据元素的数据及数据值来选择元素。  共有四种类型的属性选择器
 
@@ -433,5 +433,131 @@ span[class$="y"] { font-weight: bold; }
 img[src|="figure"] {border: 1px solid gray;}
 ```
 
-#### 使用文档结构
+### 使用文档结构
 
+> CSS功能很强大，因为他要通过 HTML 的结构来确定适当的样式，并确定如何应用这些样式。还不仅如此，因为这说明使用文档结构是CSS确定和应用样式的唯一途径，确定以何种方式项文档应用样式时，结构还承担着重要的角色。下面先来讨论结构，然后在介绍些功能刚强大的选择器。
+
+- 理解父子关系
+
+要理解选择器和文档的关系，需要先分析文档结构。考虑下面非常简单的HTML文档：
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <base href="http://www.meerkat.web/" />
+    <title>文档关系</title>
+</head>
+
+<body>
+    <h1>Meerkat<em>Contral</em></h1>
+    <p>Welcome to Meerkat <em>Central</em>, the <strong>best meerkat web site on <a href="inet.html">the <em>entire</em> Internet</a></strong>!</p>
+    <ul>
+        <li>We offer:
+            <ul>
+                <li><strong>Detailed information</strong>on how to adopt a meerkat</li>
+                <li>Tips for living with a meerkat</li>
+                <li><em>Fun</em>thing to do with a meerkat, including:</li>
+                <ol>
+                    <li>Playing fetch</li>
+                    <li>Digging for food</li>
+                    <li>Hide and seek</li>
+                </ol>
+						</ul>
+        </li>
+        <li>... and so much more!</li>
+    </ul>
+    <p>Questions? <a href="mailto:suricate@meerkat.web">Contact us!</a></p>
+</body>
+
+</html>
+```
+
+**css之所以强大，在于元素之间存在父子关系。** HTML文档以一种层次结构为基础（实际上，大多数结构化文档都是如此），可以从文档的“树”视图中了解到这种层次结构。在这个层次结构中，每个元素在整个文档结构中都有自己的一个位置。文档中每个元素要么是某个元素的父元素，要么是某个元素的父元素。而且通常兼而有之（即同时作为元素的父元素，和另一个元素的子元素）。
+
+<img src="imgs/css-dom-tree.png" alt="css文档结构" />
+
+- 后代选择器
+
+理解结构模型后，第一个好处就是定义后代选择器（descendant selector，也成为包含选择器）或者上下文选择器（contextual selector）。定义后代选择器是来创建一些规则，它们仅在某些结构中起作用，而另外一些结构中不起作用。举例来说，假设你希望只对 `h1` 元素继承的那些 `em` 元素应用样式。可以在 `h1` 中找到每个 `em` 元素上放一个 `class` 属性，但这就想使用 font 标记一样费工夫。显然，更高效的做法是声明一些规则，只与 h1 元素包含的 `em` 元素匹配。
+
+为此，可以写作：
+
+```CSS
+h1 em { color: gray;}
+```
+这个规则会把 `h1` 后代的 `em` 元素的文本变成灰色、其他 `em` 文本（如段落或块引用中的 em）则不会被这个规则选中。
+
+后代元素选择器有一个常被忽略的方面，即两个元素之间的层次间隔可以是无限的。例如，如果写作 `ul em` ,这种语法就会选择继承 `ul` 下的所有 `em` 元素，而不论 `em` 元素嵌套有多深。因此， `ul em` 将会选择以下标记中的 `em` 元素:
+
+```HTML
+<ul>
+	<li>List Item 1
+		<ol>
+			<li>List Item 1-1</li>
+			<li>List Item 1-2</li>
+			<li>List Item 1-3
+				<ol>
+					<li>List Item 1-3-1</li>
+					<li>List Item <em>1-3-2</em></li>
+					<li>List Item 1-3-3</li>
+				</ol>
+			</li>
+			<li>List Item 1-4</li>
+		</ol>
+	</li>
+</ul>
+```
+
+- 选择子元素
+
+某些情况下不想选择任意的后代元素，而是想缩小范围。值选择另一个元素的子元素。例如，你可以选择只作为 `h1`元素的子元素(而不是后代元素)的 `strong` 元素。为此,可以使用子结合符,即大于号 `>`
+
+```CSS
+h1 > strong { color: red; }
+```
+这个规则会把第一个 `h1` 下的 `strong` 变为红色，而第二个出现的 `strong` 元素不受影响。
+
+- 选择相邻的兄弟元素
+
+要去除紧接在一个 `h1` 元素后出现的段落（`p`）上边距，可以写作：
+
+```CSS
+h1 + p { margin-top: 0;}
+```
+这个选择器读作 “选择紧接在一个 `h1` 元素后出现的段落, `h1` 要与 `p` 元素拥有共同的父元素”
+
+为了形象的展示选择器是如何工作的,最容易的办法是再来考虑一个文档树的片段。
+<img src="imgs/css-dom-tree-fragment.png" alt="文档树的片段" />
+想要正常的工作,CSS要求两个元素按“源顺序”出现。在前面例子中， ol 元素后面有一个 ul 元素。因此可以用 `ol+ul` 选择第二个元素,但这个语法无法选择第一个元素。想要与 `ul+ol` 匹配, 有序类别必须紧跟在无序列表后面。
+另外，两个元素之间的文本内容不会影响相邻兄弟结合符起作用。上图与下面代码片段相同：
+
+```HTML
+<div>
+	<ol>
+		<li> List item 1 </li>
+		<li> List item 2 </li>
+		<li> List item 3 </li>
+	</ol>这是一些文本，是'div'的一部分
+	<ul>
+		<li> a list item </li>
+		<li> another list item </li>
+		<li> yet another list item </li>
+	</ul>
+</div>
+```
+尽管两个列表间多了一行文本,不过还是可以用选择器 `ol+ul` 来匹配第二个列表。这是因为中间文本并不包含在兄弟元素中，而只是父元素 div 的一部分,不过也可以这么写：
+```CSS
+l + p + ul
+```
+
+相邻兄弟选择器还可以结合其他结合符:
+```CSS
+html > body table + ul {margin-top: 1.5em;}
+```
+这个选择器解释为“选择一个紧挨在 `table` 后出现的所有兄弟 `ul` 元素,改 `table` 元素包含在一个 `body` 元素中,  `body` 元素本身是 `HTML` 元素的子元素”
+
+_警告：windows平台的ie6之前的浏览器不支持子选择器和相邻元素选择器，ie7 则对二者提供了支持。_
+
+- ##### 伪类和伪元素
