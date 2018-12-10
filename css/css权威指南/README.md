@@ -3,9 +3,9 @@
 
 > 层叠样式表(Cascading Style Sheets, CSS) 的功能非常强大，可以影响一个或一组文档的表现。显然，如果不存在某种文档，CSS基本毫无用处，因为这样一来他将没有要表现的内容。当然，“文档”的定义相当宽泛。
 
-####  1、 CSS和文档
+###  1、 CSS和文档
 
-**元素：**
+#### 元素
 
 - 替换元素： 如 `img`
 
@@ -15,14 +15,14 @@
 
 - 行内元素 ： 如 `a strong em`,行内元素在一个文本行内生成元素框，而不会打断这行文本。
 
-|##### 	| display 	|
-|-------|:-----------------------------:|
-| 值 		| `none`、 `inline`、 `block`、 `inline-block`、 `list-item`、 `run-in`、 `table`、 `inline-table`、 `table-row-group`、 `table-header-group`、 `table-footer-group`、 `table-row`、 `table-column-group`、 `table-column`、 `table-cell`、 `table-caption`、 `inherit` |
-| 初始值 | inline 	|
-| 应用于 | 所有元素 	|
-| 继承性 | 无		|
+|	#########  | display 				|
+|------------|:-----------------------------:|
+| 值 				 | `none`、 `inline`、 `block`、 `inline-block`、 `list-item`、 `run-in`、 `table`、 `inline-table`、 `table-row-group`、 `table-header-group`、 `table-footer-group`、 `table-row`、 `table-column-group`、 `table-column`、 `table-cell`、 `table-caption`、 `inherit` |
+| 初始值 		| inline 			 |
+| 应用于 		| 所有元素 		  |
+| 继承性 		| 无					 |
 
-#### link标签 :
+#### link标签
 
 ```html
 <link rel="stylesheet" type="text/css" href="sheet1.css" media="all" />
@@ -72,7 +72,7 @@
 <link rel="alternate stylesheet" type="text/css" href="print-bigtext.css" media="print" title="Big Text" />
 ```
 
-#### style元素:
+#### style元素
 
 ```html
 <style type="text/css"></style>
@@ -146,14 +146,14 @@ _注意：_ 一个内联 `style` 属性只能放一个声明块，而不能放�
 
 ### 2、选择器
 
-#### 基本规则：
+#### 基本规则
 
 将所有`h2`标题变为银色
 ```css
 h2 {color: silver}
 ```
 
-#### 规则结构：
+#### 规则结构
 
 每个 css 规则都有两个基本部分： **选择器(selector)** 和 **声明块(declaration block)** 。声明块又一个或多个 **声明(declaration)** 组成，每个声明则是一个属性——值对(proerty-value)。每个样式表由一系列规则组成。下图显示了规则的各个部分。
 
@@ -161,7 +161,7 @@ h2 {color: silver}
 
 如上图所示，选择器定义了将影响文档中的那些部分。上图中选择了 `h1` 元素。如果选择器是 `p` ，怎会选择所有 `p` (段落)元素。
 
-#### 元素选择器：
+#### 元素选择器
 
 将 html 标签元素做为 css 的选择器来使用，称为 **元素选择器**
 
@@ -171,7 +171,7 @@ h1 {color: gray:}
 h2 {color: silver;}
 ```
 
-#### 声明和关键字:
+#### 声明和关键字
 
 如果一个属性的值可以取多个关键字，在这种情况下，关键字通常由空格分隔。并不是所有的属性都能接受多个关键字，不过确实有许多属性是这样的，例如 `font` 属性。假设腰围段落文本定义中等大小的 `Heletica` 字体，写法如下：
 
@@ -192,7 +192,7 @@ h2 {font: large/150% sans-serif;}
 斜线分隔了用来设置元素的字体大小和行高的两个关键字，只用在这里才允许 `font` 声明中出现斜线。 `font` 允许的所有其他关键字都用空格分隔。
 <hr />
 
-#### 分组:
+#### 分组
 
 - 选择器分组
 
@@ -248,7 +248,7 @@ h1, h2, h3, h4, h5, h6 {
 	}
 ```
 
-#### 类选择器和ID选择器：
+#### 类选择器和ID选择器
 
 > 除了指示文档元素的选择器外，还有另外两种类型的选择器： 类选择器(class selector) 和 ID 选择器(ID selector)，他们允许以一种独立于文档元素的方式来指定元素样式。
 
@@ -284,3 +284,154 @@ ID 选择器与 类选择器类似，ID选择器前面有一个 `#` 号 —— �
 	2. 不同于类选择器 ID选择器不能结合使用。因为ID选择器不允许有空格分隔的次词列表。
 	3. class 名与 ID名之间的另一个区别是，如果你想确定一个给定元素应用那些样式，ID能包含更多含义。
 	4. 类和ID选择器都是可能区分大小写的，这取决于文档语言。HTML和XHTML将类和ID定义为区分大小写，所以ID值的大小写必须和文档中的值相对应。( _一些老旧的浏览器可能会不区分类和ID选择器的大小写_ )
+
+#### 属性选择器
+
+> 对于类选择器和ID选择器，实际上只能选择属性的值。CSS2 引入了属性选择器( `attribute selector` ), 可以根据元素的数据及数据值来选择元素。  共有四种类型的属性选择器
+
+- 简单属性选择器：
+
+选择某个属性的元素，而不论属性值是什么。可以使用一个简单的属性选择器。例如，要选择有 `class` 属性的所有 `h1` 元素，使其文本为银色，可以写作：
+
+```CSS
+h1[cass]{
+	color: silver;
+}
+```
+
+**对所有带 `alt` 属性的图像应用某种样式：**
+
+```CSS
+img[alt] {
+	border: 3px solid red;
+}
+```
+
+**把包含标题( `title` )信息的元素变为粗体显示：**
+
+```CSS
+*[title] {
+	font-weight: bold;
+}
+```
+
+**根据多个属性进行选择，只需将属性选择器连在一起即可，如：**
+
+```CSS
+a[herf][title] {
+	font-weight: bold;
+}
+```
+
+- 根据具体属性值选择：
+
+除了选择某些属性的元素，还可以进一步缩小范围，只选择特定属性的元素。
+
+```CSS
+a[herf="https://www.github.com/roy-lau"] {
+	font-weight: bold;
+}
+```
+
+与属性选择器类似，可以把多个属性-值连在一起选择一个文档。
+
+```CSS
+a[herf="https://www.w3c.org/"][title="W3C Home"] {
+	font-size: 200%;
+}
+```
+
+**空格问题**
+
+```HTML
+<p class="urgent warning">这是一段警告文本！</p>
+```
+
+根据具体属性值来选择这个元素，必须写作：
+
+```CSS
+p[class="urgent warning"] {
+	font-weight: bold;
+}
+```
+
+下面这两种方式是错误的：
+
+```CSS
+p[class="urgent"] {
+	font-weight: bold;
+}
+p[class="warning"] {
+	font-weight: bold;
+}
+```
+
+- 根据部分属性值选择：
+
+如果属性能接受词列表(词之间空格分隔)，可以根据其中任意一个词进行选择。在HTML中，这方面最经典的例子就是 `class` 属性，他能接受一个或多个词做为其属性值。下面是实例文本：
+
+```HTMl
+<p class="urgent warning">这是一段文本。</p>
+```
+
+假如想选择 `class` 属性为 `warning` 的元素，可以用一个元素选择器做到：
+
+```CSS
+p[class~="warning"] {
+	font-weight: bold;
+}
+```
+
+部分值元素选择器不仅可以用于 `class` 也可以用于别的元素,如：
+
+```CSS
+img[title="FIgure"] {
+	border: 1px solid gray;
+}
+```
+
+子串匹配选择值：
+
+|类型 							 | 描述
+|-------------------|-------------------------------------
+| `[foo^="bar"]`		| 选择 `foo` 属性值 以 `bar` 开头的所有元素
+| `[foo$="bar"]`		| 选择 `foo` 属性值 以 `bar` 结尾的所有元素
+| `[foo*="bar"]`		| 选择 `foo` 属性值中包含子串 `bar` 的所有元素
+
+用例：
+
+```HTML
+<span class="barren rocky"> 银色 粗体 </span>
+<span class="cloudy barren"> 斜体 </span>
+<span class="life-bearing cloudy"> 斜体 粗体 </span>
+```
+```CSS
+span[class*="cloud"] { font-style: italic; }
+span[class^="bar"] { background: silver; }
+span[class$="y"] { font-weight: bold; }
+```
+
+- 特定属性选择类型:
+
+```CSS
+*[lang|="en"] { color: white; }
+```
+
+这个规则会匹配等于 `en` 或以 `en` 开头的所有元素。因此，以下元素中前三个元素会被选中，而后两个不会被选中。
+
+```HTML
+<h1 lang="en"> Hello </h1>
+<p lang="en-us"> Gettings </p>
+<div lang="en-au"> G'day </div>
+<p lang="fr"> Bonjour </p>
+<h4 lang="cy-ea"> Jrooana </h4>
+```
+
+一般来说， `[att|="val"]` 可以用于任何属性及值，假设一个 HTML 文档中国有一些列图片，其中每个图片的文件名形如 `figure-1.gif` 和 `figure-2.jpg`。就可以选择一下选择器匹配所有这些图像：
+
+```CSS
+img[src|="figure"] {border: 1px solid gray;}
+```
+
+#### 使用文档结构
+
