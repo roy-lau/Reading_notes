@@ -560,7 +560,7 @@ html > body table + ul {margin-top: 1.5em;}
 
 _警告：windows平台的ie6之前的浏览器不支持子选择器和相邻元素选择器，ie7 则对二者提供了支持。_
 
-- #### 伪类和伪元素
+- #### 伪类和伪元素 [参考链接](https://developer.mozilla.org/zh-CN/docs/Learn/CSS/Introduction_to_CSS/Pseudo-classes_and_pseudo-elements)
 
 > 伪类选择器和伪元素选择器可以在文档中不一定具体存在的结构指定样式,或者为某些元素(甚至是元素本身)的状态的幻象类所指定样式,换句话说：会根据另外某种条件而非文档结构，向文档中的某部分添加样式。而且无法通过研究文档的标记准确地推断采用何种方式应用样式。
 
@@ -616,3 +616,43 @@ _警告：windows平台的ie6之前的浏览器不支持子选择器和相邻元
 	**注意**： 伪类顺序很重要，这一点最初可能不太明显。通常建议是“`link -> visited -> hover -> active`”,不过现在已经改为“`link -> visited -> focus-> hover -> active`”
 
 	* 选择一个子元素
+	静态伪类`:first-child`可以选择元素的第一个子元素。用例如下：
+	```HTML
+	<div>
+		<p> These ate the necessary steps:</p>
+		<ul>
+			<li>Insert key</li>
+			<li>turn key <strong>clockwise </strong></li>
+			<li>Push accelerator </li>
+		</ul>
+		<p>Do <em>not</em> push the brake at the same time as the accelerator </p>
+	</div>
+	```
+	```CSS
+	p:first-child{font-weight: bold;} // 第一个 p 元素 粗体
+	li:first-child{text-transform: uppercase;} // 第一个 li 元素转为大写
+	```
+	_警告：windows平台的ie6不支持 `:first-child`,不过ie7支持。_
+
+	* 根据语言选择
+
+	`:lang()` 伪类可以根据元素的语言来选择
+	```HTML
+	<p lang="fr">我写的这段是法文！</p>
+	```
+	```CSS
+	p:lang(fr){ font-style: italic; } // 将法文改为斜体
+	```
+
+	* 结合伪类
+
+	一个选择器可以使用多个伪类，例如
+	```CSS
+	a:link:hover {color: red;}
+	a:visited:hover {color: maroon;}
+	```
+	指定的顺序并不重要；将`a:hover:link`写成`a:link:hover`效果是一样的。但是，不要把互斥的伪类结合在一起使用。例如，一个链接不能同时是已访问和未访问的，所以`a:link:visited`没有任何意义。用户代理往往会忽略这个选择器，相应的忽略整个规则，不过这一点不能保证，因为不同的浏览器可能有不同的错误处理行为。
+
+	警告： ie6中对于 `a:link:hover`会理解为 `a:hover`,以为ie6不能识别 `:link`伪类。ie7中不存在这种限制。
+
+	- 2、伪元素选择器
