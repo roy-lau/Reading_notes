@@ -1229,7 +1229,40 @@ body {backgroud: url	(images/picture2.jpg); } /* INCORRECT */
 如果存在空格，整个声明将无效，以致被忽略。
 
 #### 关键字
+
+有时一个值需要用某个词来描述，这种词称为关键字。对此一种非常常见的例子就是 `none`,他不同于0。因此，要去除HTML链接的下划线，应写作：
+
+```CSS
+a:link,a:visited{text-decoration: none;}
+```
+
+类似的，如果相对链接加下划线，则要使用关键字 `underline`。
+
+如果一个属性接受关键字，那么其关键字则将只针对该属性的作用域定义。如果两个属性都使用同一个词做为关键字，一个属性的关键字与另一属性的同一关键字可能就有不同的行为。举例来说，为`letter-spacing`定义的 `normal` 与为 `font-style` 定义的 `normal` 含义就大不相同。
+
 * inherit
+
+css中有一个关键字是所有属性共有的，这就是`inherit`。`inherit` 使一个属性的值与其父元素的值相同。在大多数情况下，不必指定继承，因为大多数属性会自然的继承；不过，`inherit` 还是很有用的。
+
+例如，考虑以下样式的标记：
+
+```CSS
+#toolbar {background: blue;color: white; }
+```
+```html
+<div id="toolbar">
+	<a href="one.html">One</a> | <a href="two.html">Two</a> | <a href="three.html">Three</a>
+</div>
+```
+div 本身将有一个蓝色背景和一个白色前景色，但链接还是会根据浏览器的首选顶设置来应用样式。最后往往会是蓝色背景上的蓝色文本，之间还有白色竖线将其分隔。
+
+可以编写一个规则，明确地将“工具条”中的链接设为白色，不过通过使用“inherit”可以更健壮的做到这一点。只需向样式表增加以下规则：
+
+```CSS
+#toolbar a {color: inherit;}
+```
+
+这样会让链接使用继承的color值而不是用户代理的默认样式。正常情况下，直接指定的样式总会优先于继承的样式，但是使用inherit可以把情况反过来。
 
 
 ### CSS2单位
