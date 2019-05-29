@@ -1306,7 +1306,20 @@ div 本身将有一个蓝色背景和一个白色前景色，但链接还是会�
 ## 5、字体
 
 ### 字体系列
+
+> CSS 有5种通用字体，分别是：
+
+- Serif 字体
+- Sans-serif 字体
+- Monospace 字体
+- Cursive 字体
+- Fantasy 字体
+
+
 #### 使用通用字体系列
+
+<img src="./imgs/css-font-family.png" alt="CSS 通用字体系列" />
+
 #### 指定字体系列
 ##### 使用引号
 
