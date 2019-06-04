@@ -1321,25 +1321,113 @@ div 本身将有一个蓝色背景和一个白色前景色，但链接还是会�
 <img src="./imgs/css-font-family.png" alt="CSS 通用字体系列" />
 
 #### 指定字体系列
+
+```CSS
+h1 {font-family: Georgia, serif;}
+```
+
+`font-family`可以指定标签使用的字体，由于某些字体浏览器没有。所以可以通过逗号分隔，来指定多个字体。
+
+
 ##### 使用引号
+```CSS
+h2 {font-family: wedgie, 'karrank%', Klingon, fantasy;}
+```
+
+由于某些字体名可能会有 **空格** 或者 **特殊符号**，CSS编译器无法识别，所以在有空格或者特殊符号的字体上需要使用引号包裹。
 
 ### 字体加粗
+
+```CSS
+b {font-weight: bold;}
+```
+
+<img src="./imgs/css-font-weight.png" alt="CSS 字体加粗" />
+
+
 #### 加粗如何起作用
+
+> 一般情况下，字体有 9 级加粗度（即100-900）。这些数据都别定义为与某些常用变形等价(先不考虑 `font-weight` 的其他值)。 400定义为等价于 `normal`, `700` 对应于 `blod` 。 其他数不对应 `font-weight` 的任何其他值，不过他们可能对应于常用变形名。如果有一个字体变形标位 `Normal、 Regular、 Roman、 Book` 就会为之指定 `400` ，而标为 `Medium` 的变形会指定为 `500` 。不过，如果一个标为 `Medium` 的变形是唯一可用的变形，它不会指定为 `500` 而会是 `400`。
+
+- 如果未指定值 `500` 的加粗度，其字体加粗与 `400` 的相应加粗相同。
+- 如果未指定 `300`的加粗度，则为之指定下一个比 `400` 更细的变形。 如果没有可用的较细变形，为 `300` 指定的变形等同于 `400` 的相应变形。 在这种情况下， 通常是 `Normal` 或 `Medium`。这种方法同样适用于 `200` 和 `100`。
+- 如果未指定 `600` 的加粗度，会为之指定下一个比 `400` 更粗的变形。 如果没有可用的较粗变形, 为 `600` 指定的变形则等同于 `500` 的相应变形。 这种方法同样适用于 `700、 800 和 900`
+
 #### 让字体更粗
 #### 让字体更细
 
 ### 字体大小
+
+<img src="./imgs/css-font-size.png" alt="CSS 字体大小" />
+
+
 #### 绝对大小
+
+`font-size` 有7个绝对大小值： `xx-small、 x-small、small、medium、large、x-large 和 xx-large`。这些关键字并没有明确地定义，而不是相对定义
+
+- 缩放因子转换为像素
+
+| 关键字 	| 缩放：1.5 | 缩放：1.2 |
+|-----------|-------|-------|
+| xx-small 	| 5px	| 9px 	|
+| x-small 	| 7px	| 11px 	|
+| small 	| 11px	| 13px 	|
+| medium 	| 16px	| 16px 	|
+| large 	| 24px	| 19px 	|
+| x-large 	| 36px	| 23px 	|
+| xx-large 	| 54px	| 28px 	|
+
 #### 相对大小
+
+> 相对来讲，关键字 `larger` 和 `smaller` 很简单： 这两个关键字使元素的大小相对于其父元素的大小在绝对大小梯度上上移或下移，在此会使用计算绝对大小时采用的缩放因子。
+
 #### 百分数和大小
+
+> 在某种程度上讲，百分数值与响度大小关键字很相似。百分数值总是根据从父元素继承的大小来计算。不同于相对大小关键字，百分数允许对计算的字体大熊啊有更细的控制。
+
 #### 字体大小和继承
+
+_没啥重点_
+
 #### 使用长度单位
 
+`font-size` 的长度值有：
+
+- pt
+- pc
+- in
+- cm
+- mm
+
+> 36pt = 3pc = 0.5in = 1.27cm = 12.7mm
+
+
 ### 风格和变形
+
+> 这一章主要讨论 `font-style` `font-variant` 最后对字体属性做个总结
+
 #### 有风格的字体
+
+`font-style` 用于在 `normal（标准字体样式）` 文本、 `italic（斜体字体样式）` 文本和 `oblique（倾斜字体样式）` 文本之间进行选择。 重点是要明确 `italic` 文本和 `oblique` 文本之间的差别。
+
+<img src="./imgs/css-font-style.png" alt="CSS 字体风格" />
+
 #### 字体变形
 
+除了大小和风格，字体还可以有变形。 CSS提供了一种办法来确定非常常见的变形（font-variant）。
+> `font-variant:small-caps;` 和 `text-transform:uppercase;` 效果基本一样
+
+<img src="./imgs/css-font-variant.png" alt="CSS 字体风格" />
+
 ### 拉伸和调整字体
+
+`font-stretch` 字体拉伸 几乎所有的浏览器都没有实现，不再做深入研究
+
+<img src="./imgs/css-font-stretch.png" alt="CSS 字体拉伸" />
+
+`font-size-adjust` 字体调整 只有火狐浏览器实现了这个属性，不做深入研究
+
+<img src="./imgs/css-font-size-adjust.png" alt="CSS 字体调整" />
 
 ### font 属性
 #### 增加行高
